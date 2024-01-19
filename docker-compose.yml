@@ -29,7 +29,7 @@ services:
       - "8060:8060"
   loyaltyapp:
     build:
-      context: LoyaltyApp
+      context: LoayltyApp
     depends_on:
       - postgres
     ports:
