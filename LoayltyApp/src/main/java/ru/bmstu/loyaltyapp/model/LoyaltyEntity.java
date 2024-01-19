@@ -1,6 +1,6 @@
 package ru.bmstu.loyaltyapp.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
