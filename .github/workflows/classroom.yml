@@ -34,9 +34,9 @@ jobs:
         
       # Loyalty
       - name: Grant execute permission for gradlew
-        run: cd LoyaltyApp && chmod +x gradlew
+        run: cd LoayltyApp && chmod +x gradlew
       - name: Build with Gradle
-        run: cd LoyaltyApp && ./gradlew build
+        run: cd LoayltyApp && ./gradlew build
         
       # Payment
       - name: Grant execute permission for gradlew
