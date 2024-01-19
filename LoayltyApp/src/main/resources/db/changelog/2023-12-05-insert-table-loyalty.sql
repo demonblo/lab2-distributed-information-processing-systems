@@ -1,0 +1,2 @@
+INSERT INTO loyalty(id, username, reservation_count, status, discount) VALUES (1, 'testMax@yandex.ru', 25, 'GOLD', 10);
+INSERT INTO loyalty(id, username, reservation_count, status, discount) VALUES (2, 'admin@example.com', 25, 'GOLD', 10);

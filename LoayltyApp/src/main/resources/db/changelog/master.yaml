@@ -1,0 +1,7 @@
+ databaseChangeLog:
+    - include:
+        file: 2023-12-04-create-table-loyalty.sql
+        relativeToChangelogFile: true
+    - include:
+        file: 2023-12-05-insert-table-loyalty.sql
+        relativeToChangelogFile: true

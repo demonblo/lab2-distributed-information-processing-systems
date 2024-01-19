@@ -1,0 +1,4 @@
+databaseChangeLog:
+  - include:
+      file: 2023-12-02-create-table-payment.sql
+      relativeToChangelogFile: true

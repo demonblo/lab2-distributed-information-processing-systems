@@ -9,12 +9,74 @@ services:
       POSTGRES_PASSWORD: "postgres"
       POSTGRES_DB: postgres
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data2
       - ./postgres/:/docker-entrypoint-initdb.d/
     ports:
-      - "5432:5432"
+      - "5433:5432"
+      
+  reservationapp:
+    build:
+      context: ReservationApp
+    depends_on:
+      - postgres
+    ports:
+      - "8070:8070"
+  paymentapp:
+    build:
+      context: PaymentApp
+    depends_on:
+      - postgres
+    ports:
+      - "8060:8060"
+  loyaltyapp:
+    build:
+      context: LoyaltyApp
+    depends_on:
+      - postgres
+    ports:
+      - "8050:8050"
+  statisticsapp:
+    build:
+      context: StatisticsApp
+    depends_on:
+      - postgres
+    ports:
+      - "8090:8090"
+  gateway:
+    build:
+      context: Gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - reservationapp
+      - paymentapp
+      - loyaltyapp
+      - statisticsapp
 
-# TODO добавить сервисы
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.3.2
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.2
+    container_name: kafka-1
+    ports:
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper
 
 volumes:
   db-data:
