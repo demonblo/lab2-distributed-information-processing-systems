@@ -64,7 +64,7 @@ jobs:
 
       - name: Run API Tests
         timeout-minutes: 5
-        run: ./scripts/test-script.sh
+        run: chmod +x ./scripts/test-script.sh
         env:
           VARIANT: v2
           SERVICE_NAME: loyaltyapp
