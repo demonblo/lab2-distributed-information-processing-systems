@@ -6,7 +6,7 @@ import ru.bmstu.reservationapp.dto.PaginationResponse;
 
 public class ResponseConverter {
     public static PaginationResponse toPaginationResponse(Integer page, Integer pageSize,
-                                                              Page<HotelResponse> hotelResponsePage) {
+                                                          Page<HotelResponse> hotelResponsePage) {
         return new PaginationResponse()
                 .setPage(page)
                 .setPageSize(pageSize)
