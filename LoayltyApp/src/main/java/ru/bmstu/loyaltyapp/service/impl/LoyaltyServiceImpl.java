@@ -1,17 +1,12 @@
 package ru.bmstu.loyaltyapp.service.impl;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bmstu.loyaltyapp.dto.LoyaltyDTO;
 import ru.bmstu.loyaltyapp.dto.LoyaltyIntoResponse;
 import ru.bmstu.loyaltyapp.dto.enums.StatusEnum;
-import ru.bmstu.loyaltyapp.exception.data.jwtToken.UnauthorizedException;
-import ru.bmstu.loyaltyapp.model.LoyaltyEntity;
 import ru.bmstu.loyaltyapp.repository.LoyaltyRepository;
-import ru.bmstu.loyaltyapp.repository.TokenRepository;
 import ru.bmstu.loyaltyapp.service.LoyaltyService;
 import ru.bmstu.loyaltyapp.service.converter.LoyaltyConverter;
 
@@ -19,33 +14,20 @@ import static ru.bmstu.loyaltyapp.service.converter.LoyaltyConverter.fromLoyalty
 import static ru.bmstu.loyaltyapp.service.converter.LoyaltyConverter.fromLoyaltyEntityToLoyaltyDTO;
 
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LoyaltyServiceImpl implements LoyaltyService {
-    @Autowired
     private final LoyaltyRepository loyaltyRepository;
-
-    @Autowired
-    private final TokenRepository tokenRepository;
 
 
     @Transactional(readOnly = true)
-    public Integer getDiscountByUsername(String bearerToken) {
-        String username = tokenRepository.getUsername(bearerToken);
-
+    public Integer getDiscountByUsername(String username) {
         return loyaltyRepository.getDiscountByUsername(username);
     }
 
     @Transactional(readOnly = true)
-    public LoyaltyIntoResponse getLoyaltyInfoResponseByUsername(String bearerToken) {
-        String username = tokenRepository.getUsername(bearerToken);
-
-        LoyaltyEntity res = loyaltyRepository.getLoyaltyInfoResponseByUsername(username);
-        if (res == null)
-            throw new UnauthorizedException(username);
-
-        LoyaltyDTO loyaltyDTO = fromLoyaltyEntityToLoyaltyDTO(res);
+    public LoyaltyIntoResponse getLoyaltyInfoResponseByUsername(String username) {
+        LoyaltyDTO loyaltyDTO = fromLoyaltyEntityToLoyaltyDTO(loyaltyRepository.getLoyaltyInfoResponseByUsername(username));
         return fromLoyaltyDTOToLoyaltyInfoResponse(loyaltyDTO);
     }
 
@@ -54,9 +36,7 @@ public class LoyaltyServiceImpl implements LoyaltyService {
     }
 
     @Transactional
-    public LoyaltyIntoResponse updateReservationCount(String bearerToken) {
-        String username = tokenRepository.getUsername(bearerToken);
-
+    public LoyaltyIntoResponse updateReservationCount(String username) {
         LoyaltyDTO loyaltyDTO = fromLoyaltyEntityToLoyaltyDTO(loyaltyRepository.getLoyaltyEntityByUsername(username));
         int reservationCount = loyaltyDTO.getReservationCount() + 1;
 
@@ -74,9 +54,7 @@ public class LoyaltyServiceImpl implements LoyaltyService {
     }
 
     @Transactional
-    public LoyaltyIntoResponse cancelReservationCount(String bearerToken) {
-        String username = tokenRepository.getUsername(bearerToken);
-
+    public LoyaltyIntoResponse cancelReservationCount(String username) {
         LoyaltyDTO loyaltyDTO = fromLoyaltyEntityToLoyaltyDTO(loyaltyRepository.getLoyaltyEntityByUsername(username));
         int reservationCount = loyaltyDTO.getReservationCount() - 1;
 

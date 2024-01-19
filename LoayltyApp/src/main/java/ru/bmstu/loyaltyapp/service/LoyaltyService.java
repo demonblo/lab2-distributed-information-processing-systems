@@ -4,9 +4,9 @@ import ru.bmstu.loyaltyapp.dto.LoyaltyIntoResponse;
 
 
 public interface LoyaltyService {
-    Integer getDiscountByUsername(String bearerToken);
-    LoyaltyIntoResponse getLoyaltyInfoResponseByUsername(String bearerToken);
+    Integer getDiscountByUsername(String username);
+    LoyaltyIntoResponse getLoyaltyInfoResponseByUsername(String username);
     Integer getReservationUpdatedPrice(Integer price, Integer discount);
-    LoyaltyIntoResponse updateReservationCount(String bearerToken);
-    LoyaltyIntoResponse cancelReservationCount(String bearerToken);
+    LoyaltyIntoResponse updateReservationCount(String username);
+    LoyaltyIntoResponse cancelReservationCount(String username);
 }

@@ -1,3 +1,1 @@
-INSERT INTO hotels(id, hotel_uid, name, country, city, address, stars, price) VALUES (1, '049161bb-badd-4fa8-9d90-87c9a82b0668', 'Ararat Park Hyatt Moscow', 'Россия', 'Москва', 'Неглинная ул., 4', 3, 10000);
-INSERT INTO hotels(id, hotel_uid, name, country, city, address, stars, price) VALUES (2, 'e5a707e8-c523-498d-9cbd-a540169f76e3', 'Lotte Hotel Moscow', 'Россия', 'Москва', 'Новинский бульвар, д. 8, стр. 2,', 5, 15000);
-INSERT INTO hotels(id, hotel_uid, name, country, city, address, stars, price) VALUES (3, '2068897b-c896-448e-bdc0-71d89656026b', 'Hotel Metropol Moscow', 'Россия', 'Москва', 'Театральный проезд, 2', 4, 4200);
+INSERT INTO hotels(id, hotel_uid, name, country, city, address, stars, price) VALUES (1, '049161bb-badd-4fa8-9d90-87c9a82b0668', 'Ararat Park Hyatt Moscow', 'Россия', 'Москва', 'Неглинная ул., 4', 5, 10000);

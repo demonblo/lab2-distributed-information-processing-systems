@@ -3,31 +3,6 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/master.yaml
   datasource:
-    url: jdbc:postgresql://postgres-chart-service:5432/loyalties
+    url: jdbc:postgresql://postgres:5432/loyalties
     username: program
     password: test
-  cloud:
-    function:
-      definition: producer
-    stream:
-      kafka:
-        binder:
-          brokers: kafka:9092
-          auto-add-partitions: true
-          auto-create-topics: true
-          producer-properties:
-            allow:
-              auto:
-                create:
-                  topics: true
-      bindings:
-        producer-out-0:
-          group: dev_loyalty_producer
-          destination: dev.rsoi.statistics.event
-
-const:
-  jwt:
-    token:
-      prefix: "Bearer "
-    modulus: "qir1qoEh1hztZJZnnx-h_ifv1eZFx8Hzw9DWBH_YhRqM2IlkT2GS7SgPs_jTw7Ux7n773JNdBStmlMKY8vhTrCWPEeRSRulAg8cNLEmBQZF2ptLvR8dflVj33AQf2b9u930PmL-z00ZkfD04i4hGO6pJSLIh8G_pYPhe-lsALwxb-KBfTYNXbB7frZ5DueISPeC622Q-vM52YyKxOuJafRkHp4MgDzmonvyOgGBH-Rpk6tHya1KK9t9m9ByytcV-rVPMSEf4xr6CAuKK-sydoxwjgZlhvAwmH4KEprkK6_jk-owerCyVKqHEXD9iVcrSKh5wFt7w_zEY15i-Xp5oCQ"
-    exponent: "AQAB"

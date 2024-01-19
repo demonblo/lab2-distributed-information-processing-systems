@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS hotels
     address   VARCHAR(255) NOT NULL,
     stars     INT,
     price     INT          NOT NULL
-);
+    );

@@ -6,14 +6,14 @@ import ru.bmstu.loyaltyapp.model.LoyaltyEntity;
 
 public interface LoyaltyRepository extends JpaRepository<LoyaltyEntity, Integer> {
     @Query(value = "SELECT discount FROM loyalty WHERE username = ?1",
-        nativeQuery = true)
+            nativeQuery = true)
     Integer getDiscountByUsername(String username);
 
     @Query(value = "SELECT * FROM loyalty WHERE username = ?1",
-        nativeQuery = true)
+            nativeQuery = true)
     LoyaltyEntity getLoyaltyInfoResponseByUsername(String username);
 
     @Query(value = "SELECT * FROM loyalty WHERE username = ?1",
-        nativeQuery = true)
+            nativeQuery = true)
     LoyaltyEntity getLoyaltyEntityByUsername(String username);
 }
