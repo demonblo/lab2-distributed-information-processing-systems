@@ -1,0 +1,37 @@
+host:
+  service:
+    hotel: "reservationapp"
+    loyalty: "loyaltyapp"
+    payment: "paymentapp"
+
+path:
+  service:
+    hotel: "api/v1/hotels"
+    loyalty: "api/v1/loyalty"
+    reservation: "api/v1/reservations"
+    payment: "api/v1/payments"
+
+port:
+  service:
+    hotel: "8070"
+    loyalty: "8050"
+    payment: "8060"
+
+resilience4j:
+  circuit-breaker:
+    instances:
+      gateway-hotels:
+        minimum-number-of-calls: 2
+        wait-duration-in-open-state: 30s
+      gateway-loyalty:
+        minimum-number-of-calls: 2
+        wait-duration-in-open-state: 30s
+      gateway-reservation:
+        minimum-number-of-calls: 2
+        wait-duration-in-open-state: 30s
+      gateway-payment:
+        minimum-number-of-calls: 2
+        wait-duration-in-open-state: 30s
+
+schedule:
+  fixedRate.in.milliseconds: 10_000
