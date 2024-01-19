@@ -1,6 +1,5 @@
 package ru.bmstu.reservationapp.controller;
 
-import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -14,6 +13,7 @@ import ru.bmstu.reservationapp.dto.HotelResponse;
 import ru.bmstu.reservationapp.dto.PaginationResponse;
 import ru.bmstu.reservationapp.service.HotelService;
 
+import javax.websocket.server.PathParam;
 import java.sql.Date;
 import java.util.UUID;
 

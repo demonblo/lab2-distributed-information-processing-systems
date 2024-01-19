@@ -1,7 +1,7 @@
 package ru.bmstu.loyaltyapp.controller;
 
 
-import jakarta.websocket.server.PathParam;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.bmstu.loyaltyapp.dto.LoyaltyIntoResponse;
 import ru.bmstu.loyaltyapp.service.LoyaltyService;
 
+import javax.websocket.server.PathParam;
 
 
 @Slf4j

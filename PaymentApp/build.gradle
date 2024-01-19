@@ -1,23 +1,11 @@
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '3.2.1'
-    id 'io.spring.dependency-management' version '1.1.4'
-    id 'org.asciidoctor.jvm.convert' version '3.3.2'
-}
-
-group = 'ru.bmstu'
-version = '0.0.1-SNAPSHOT'
-
-java {
-    sourceCompatibility = '17'
+    id("org.springframework.boot") version "2.7.5"
+    id("io.spring.dependency-management") version "1.0.15.RELEASE"
+    id("java")
 }
 
 repositories {
     mavenCentral()
-}
-
-ext {
-    set('snippetsDir', file("build/generated-snippets"))
 }
 
 dependencies {
@@ -31,12 +19,6 @@ dependencies {
 
     implementation("org.postgresql:postgresql")
 
-    // jwt
-    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
-    implementation("javax.xml.bind:jaxb-api:2.3.1")
-    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
-    runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
-
     //LOMBOK Dependencies
     annotationProcessor("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
@@ -46,7 +28,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("com.h2database:h2")
 }
-
 
 tasks {
     test {
